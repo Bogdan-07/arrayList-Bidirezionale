@@ -4,10 +4,14 @@ public class Node
     int nextNode;
     int prevNode;
 
+    //Constructor
+
     public Node(Payload payload)
     {
         this.payload = payload;
     }
+
+    //Payload
 
     public void setPayload(int id, String description)
     {
@@ -20,24 +24,25 @@ public class Node
         return payload;
     }
 
+    //Next
+
     public void setNext(int n)
     {
         nextNode = n;
     }
-
     public int getNext()
     {
         return nextNode;
     }
 
+    //Prev
+
     public void setPrev(int p)
     {
         prevNode = p;
     }
-
     public int getPrev()
     {
         return prevNode;
     }
-
 }

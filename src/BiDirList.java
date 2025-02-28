@@ -1,36 +1,73 @@
 import java.util.ArrayList;
 
-public class biDirList
+public class BiDirList
 {
     private ArrayList<Node> List = new ArrayList<>();
     private Node temp;
+    private final int head = 0;
+    private int index = head;
 
+    //IsEmpty
 
-    public int getListSize()
+    public boolean isEmpty()
     {
-        return List.size();
+        return List.isEmpty();
     }
-    public void addNodeToList(int i,Node n)
+
+    //Index
+
+    public void increaseIndex()
     {
+        if(index == List.size()-1)
+            index = head;
+        else
+            index++;
+    }
+    public void decreaseIndex()
+    {
+        if(index == 0)
+            index = List.size()-1;
+        else
+            index--;
+    }
+
+    //Manage List
+
+    public void addNodeToList(Node n)
+    {
+        if(List.size() > 1)
+            increaseIndex();
         temp = n;
-        if(i != 0)
-            i--;
-        List.add(i,temp);
+        List.add(index, temp);
+        setNextNode();
+        setPrevNode();
+
+    }
+    public Node getNode()
+    {
+        return List.get(index);
+    }
+    public void removeNodeAtIndex()
+    {
+        if(isEmpty())
+            System.out.println("Unable to remove a node, the list is empty!\n");
+        else
+            List.remove(index);
         setNextNode();
         setPrevNode();
     }
-    public void removeNodeAtIndex(int i)
+    public Node printNodeAtIndex()
     {
-        i--;
-        List.remove(i);
-        setNextNode();
-        setPrevNode();
-    }
-    public Node getNodeAtIndex(int i)
-    {
-        return List.get(i);
+        if(isEmpty())
+        {
+            System.out.println("Unable to print the node, the list is empty!\n");
+             return null;
+        }
+            else
+                return List.get(index);
     }
 
+    //Next & Prev
 
     private void setNextNode()
     {
