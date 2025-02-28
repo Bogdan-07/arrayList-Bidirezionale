@@ -1,43 +1,78 @@
-public class Main
-{
-    public static void main(String[] args)
-    {
-        biDirList al = new biDirList();
+import java.util.Scanner;
 
-        Payload p1 = new Payload();
-        p1.setId(1);
-        p1.setDescription("uno");
-        p1.setCurrentDate();
-        Node n1 = new Node(p1);
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        biDirList biList = new biDirList();
 
-        Payload p2 = new Payload();
-        p2.setId(2);
-        p2.setDescription("due");
-        p2.setCurrentDate();
-        Node n2 = new Node(p2);
+        boolean x = true;
+        int choice;
 
-        Payload p3 = new Payload();
-        p3.setId(3);
-        p3.setDescription("tre");
-        p3.setCurrentDate();
-        Node n3 = new Node(p3);
+        do
+        {
+            System.out.println("1. Add a node...\n2. Remove a node...\n3. Show on screen ID, description and when the last change was made for each node...\n4. Exit the code\n");
+            System.out.print("-What would you like to do: ");
+            choice = scanner.nextInt();
+            System.out.println();
+            switch(choice)
+            {
+                case 1:
+                    Payload p = new Payload();
+                    Node n = new Node(p);
+                    System.out.println("Insert");
+
+                    System.out.println("\t1. Add the node as first\n\t2. Add the node in a chosen position\n\t3. Add the node as last\n\t4. Go back\n");
+                    System.out.print("-What would you like to do: ");
+                    choice = scanner.nextInt();
+                    switch(choice)
+                    {
+                        case 1:
+                            biList.addNodeToList(0, n);
+                            break;
+                        case 2:
+                            System.out.print("Insert the desired position: ");
+                            biList.addNodeToList(scanner.nextInt(), n);
+                            break;
+                        case 3:
+                            biList.addNodeToList(biList.getListSize(),n);
+                        case 4:
+                            break;
+                    }
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+                    x = false;
+                    break;
+            }
+        }while(x);
 
 
-        al.addNodeToList(n1);
-        al.addNodeToList(n2);
-        al.addNodeToList(n3);
 
-        System.out.println("La lista e' lunga: "+ al.List.size());
-        System.out.println("Ecco a chi punta ciascun oggetto");
-        for (int i = 0; i< al.List.size(); i++)
-            System.out.println("il nodo nr."+i+" punta al nodo nr.: "+ al.List.get(i).getNext());
+       /* for(int i = 0; i<al.List.size() ;i++)
+        {
+            System.out.print(("Il nodo nr ")+i+" ha come prossimo nodo il nodo nr "+al.List.get(i).getNext());
+            System.out.println(" ed ha come nodo precedente il nodo nr "+al.List.get(i).getPrev());
+        }
 
-        System.out.println("\n\n");
+        */
 
-        al.removeNodeAtIndex(2);
-        System.out.println("La lista e' lunga: "+ al.List.size());
-        System.out.println("Ecco a chi punta ciascun oggetto dopo aver tolto il nodo 2");
-        for (int i = 0; i< al.List.size(); i++)
-            System.out.println("il nodo avente id "+al.List.get(i).getPayload().getId()+" punta al nodo nr.: "+ al.List.get(i).getNext());
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

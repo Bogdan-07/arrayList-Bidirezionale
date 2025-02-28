@@ -9,10 +9,10 @@ public class Node
         this.payload = payload;
     }
 
-    public void setPayload(String description, int id)
+    public void setPayload(int id, String description)
     {
-        payload.setDescription(description);
         payload.setId(id);
+        payload.setDescription(description);
         payload.setCurrentDate();
     }
     public Payload getPayload()
