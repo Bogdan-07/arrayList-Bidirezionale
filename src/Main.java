@@ -12,8 +12,8 @@ public class Main
 
         do
         {
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println("1. Add a node after the current one\n2. Remove current node\n3. Display on screen and save in the 'temp' object the ID, description, and the last modification date of the current node\n4. Go to the next node\n5. Go to the previous node\n6. Exit the code\n");
+            System.out.println("|~~~~~|~~~~~|~~~~~|~~~~~|~~~~~|~~~~~|~~~~~|~~~~~|\n");
+            System.out.println("1. Add a node after the current one\n2. Remove current node\n3. Go to the next node\n4. Go to the previous node\n5. Print the entire List\n6. Exit the code\n");
             if(biList.isEmpty())
                 System.out.println("Currently, the list is empty.");
             else
@@ -24,40 +24,38 @@ public class Main
             switch(choice)
             {
                 case 1:
-                    Payload p = new Payload();
-                    Payload temp;
                     System.out.print("Insert your ID: ");
-                    p.setId(scanner.nextInt());
+                    int tempID = scanner.nextInt();
                     scanner.nextLine();
+
                     System.out.print("Insert a description if needed: ");
-                    p.setDescription(scanner.nextLine());
+                    String tempDesc = scanner.nextLine();
+
+                    Payload p = new Payload(tempID, tempDesc);
                     Node node = new Node(p);
+
                     biList.addNodeToList(node);
                     break;
                 case 2:
-                    biList.removeNodeAtIndex();
+                    if(biList.removeNodeAtIndex() == -1)
+                        System.out.println("Unable to remove the node because the list it's empty!");
+                    else
+                        System.out.println("Node removed!");
                     break;
                 case 3:
-
-                    if(!(biList.printNodeAtIndex()== null))
-                    {
-                        temp = biList.printNodeAtIndex().getPayload(); //new discovery
-                        System.out.println("This node was modified by ID: " + temp.getId() + " on the following date: " + temp.getCurrentDate() + " and left the following description: " + temp.getDescription()+"\n");
-                    }
-                        break;
-                case 4:
                     biList.increaseIndex();
                     break;
-                case 5:
+                case 4:
                     biList.decreaseIndex();
+                    break;
+                case 5:
+                    String s = biList.printEntireList();
+                    System.out.println(s);
                     break;
                 case 6:
                     x = false;
                     break;
             }
         }while(x);
-
-
-
     }
 }

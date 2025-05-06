@@ -1,10 +1,21 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Payload
 {
     private int id;
     private String description;
-    private LocalDateTime currentDate;
+    private LocalDateTime timeStamp;
+    private String lessi;
+
+    //Constructor
+
+    public Payload(int id, String description)
+    {
+        this.id = id;
+        this.description = description + "";
+        timeStamp = LocalDateTime.now();
+    }
 
     //Description
 
@@ -30,13 +41,13 @@ public class Payload
 
     //Date
 
-    public void setCurrentDate()
+    public void setTimeStamp()
     {
-        currentDate = LocalDateTime.now();
+        timeStamp = LocalDateTime.now();
     }
-    public LocalDateTime getCurrentDate()
+    public LocalDateTime getTimeStamp()
     {
-        return currentDate;
+        return timeStamp;
     }
 
 }

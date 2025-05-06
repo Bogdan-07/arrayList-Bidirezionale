@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class BiDirList
@@ -6,6 +8,13 @@ public class BiDirList
     private Node temp;
     private final int head = 0;
     private int index = head;
+
+    //Constructor
+
+    public BiDirList()
+    {
+
+    }
 
     //IsEmpty
 
@@ -47,24 +56,35 @@ public class BiDirList
     {
         return List.get(index);
     }
-    public void removeNodeAtIndex()
+    public int removeNodeAtIndex()
     {
         if(isEmpty())
-            System.out.println("Unable to remove a node, the list is empty!\n");
+            return -1;
         else
             List.remove(index);
         setNextNode();
         setPrevNode();
+        return 0;
     }
-    public Node printNodeAtIndex()
+
+    public String printEntireList()
     {
         if(isEmpty())
+
+            return "Unable to print the list because it's empty!\n";
+        else
         {
-            System.out.println("Unable to print the node, the list is empty!\n");
-             return null;
+            String a = "";
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d E yyyy, H:m:ss");
+
+            for (Node tot : List)
+                a =   ("Node:\n"
+                        + "\tID: "  + tot.getPayload().getId() + "\n"
+                        + "\tDescription: "  + tot.getPayload().getDescription() + "\n"
+                        + "\tTimeStamp: "  + tot.getPayload().getTimeStamp().format(formatter) + "\n"
+                    ) + a;
+            return a;
         }
-            else
-                return List.get(index);
     }
 
     //Next & Prev
@@ -118,6 +138,5 @@ public class BiDirList
                 List.add(i, temp);
             }
         }
-
     }
 }

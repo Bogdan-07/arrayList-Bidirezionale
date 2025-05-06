@@ -17,7 +17,7 @@ public class Node
     {
         payload.setId(id);
         payload.setDescription(description);
-        payload.setCurrentDate();
+        payload.setTimeStamp();
     }
     public Payload getPayload()
     {
